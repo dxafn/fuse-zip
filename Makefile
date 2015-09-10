@@ -1,8 +1,9 @@
 DEST=fuse-zip
-LIBS=-Llib -lfusezip $(shell pkg-config fuse --libs) $(shell pkg-config libzip --libs)
+LIBS=-Llib -Wl,-Bstatic -lfusezip $(shell pkg-config libzip --libs) -Wl,-Bdynamic $(shell pkg-config fuse --libs)
 LIB=lib/libfusezip.a
 CXXFLAGS=-g -O0 -Wall -Wextra
 RELEASE_CXXFLAGS=-O2 -Wall -Wextra
+RELEASE_LDFLAGS=-static-libgcc -static-libstdc++
 FUSEFLAGS=$(shell pkg-config fuse --cflags)
 ZIPFLAGS=$(shell pkg-config libzip --cflags)
 SOURCES=main.cpp
@@ -49,7 +50,7 @@ $(MAN): $(MANSRC)
 man-clean:
 	rm -f $(MANSRC).gz
 
-install: all doc
+install: release
 	mkdir -p "$(INSTALLPREFIX)/bin"
 	install -m 755 -s "$(DEST)" "$(INSTALLPREFIX)/bin"
 	mkdir -p "$(INSTALLPREFIX)/share/doc/$(DEST)"
@@ -69,7 +70,7 @@ tarball-clean:
 	rm -f fuse-zip-*.tar.gz fuse-zip-tests-*.tar.gz
 
 release:
-	make CXXFLAGS="$(RELEASE_CXXFLAGS)" all doc
+	make CXXFLAGS="$(RELEASE_CXXFLAGS)" LDFLAGS="$(RELEASE_LDFLAGS)" all doc
 
 test: $(DEST)
 	make -C tests

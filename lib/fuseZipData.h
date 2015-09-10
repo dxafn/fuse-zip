@@ -80,6 +80,11 @@ public:
     ~FuseZipData();
 
     /**
+     * try password if ZIP DATA is encrypted
+     */
+    bool try_passwd(const char *pass);
+
+    /**
      * Detach node from tree, and delete associated entry in zip file if
      * present.
      *

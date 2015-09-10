@@ -47,6 +47,24 @@ FuseZipData::~FuseZipData() {
     }
 }
 
+bool FuseZipData::try_passwd(const char *pass) {
+    int zep, try_count;
+    struct zip_file *zf;
+
+    try_count = 1;
+just_try:
+    zep = 0;
+    zf = BigBuffer::open(m_zip, 0, &zep);
+    if (zf == NULL) {
+        if (ZIP_ER_NOPASSWD == zep && try_count--) {
+            BigBuffer::passwd = pass;
+            goto just_try;
+        }
+    }
+
+    return zf != NULL;
+}
+
 void FuseZipData::build_tree(bool readonly) {
     m_root = FileNode::createRootNode();
     if (m_root == NULL) {
@@ -62,6 +80,7 @@ void FuseZipData::build_tree(bool readonly) {
             const char *name = zip_get_name(m_zip, i, ZIP_FL_ENC_RAW);
             if ((name[0] == '/') || (strncmp(name, "../", 3) == 0)) {
                 needPrefix = true;
+                break;
             }
         }
     }

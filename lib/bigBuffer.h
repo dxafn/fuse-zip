@@ -78,6 +78,8 @@ private:
 
 public:
     zip_uint64_t len;
+    /* store password here, Can be NULL */
+    static const char *passwd;
 
     /**
      * Create new file buffer without mapping to file in a zip archive
@@ -97,6 +99,11 @@ public:
     BigBuffer(struct zip *z, zip_uint64_t nodeId, zip_uint64_t length);
 
     ~BigBuffer();
+
+    /**
+     * open a file inside zip archive
+     */
+    static struct zip_file *open(struct zip *z, zip_uint64_t nodeId, int *zep);
 
     /**
      * Dispatch read requests to chunks of a file and write result to
