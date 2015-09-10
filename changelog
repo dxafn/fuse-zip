@@ -1,0 +1,132 @@
+2014-01-14 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.4.0:
+	- Symbolic links (issue #8)
+	- UNIX file permissions and owner info (issue #36)
+	- DOS file attributes
+	- Creation/access time
+
+2013-12-10 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.3.2:
+	- Fixed compilation problem on Mac OS X
+
+2013-12-07 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.3.1:
+	- Fixed compilation problems
+	- Fixed memory reservation
+
+2013-06-29 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.3.0:
+	- ZIP64 support (issue #30, issue #34, issue #35)
+	- Relative and absolute paths support (issue #23)
+	- Fixed compilation problems (issue #29, issue #31)
+
+2010-12-06 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.2.13:
+	- Fixed issue #27: Android APK Support
+	- Fixed issue #28: doesn't honor the -r flag for some zip files
+
+2010-02-07 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.2.12:
+	- Fixed problem with lost new file after truncate().
+	- Fixed problems with rename(): Fixed various rename() problems: lost
+	path for subdirectory entries, duplicates of moved directories in a
+	hierarchy, invalid key in map after rename.
+	- Fixed unitialized values in read() call.
+	- Fixed memory leaks: buffer allocated for file content not freeed in
+	NEW state, incorrect buffer size in truncate().
+	- Fixed non-fatal memory leaks: FUSE options not freeed after use,
+	memory leak in help/version mode, internal data structures not freeed
+	if FUSE setup failed.
+	- More correct corrupted files handling.
+	- More correct memory insufficiency errors handling.
+
+2010-01-26 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.2.11:
+	- Fixed issue #25: does not compile with libfuse <= 2.8
+
+2010-01-09 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.2.10:
+	- Fixed issue #14: added '-r' option description.
+	- Added note about converting file names inside archive (for Russians
+	who uses 'another OS')
+
+2010-01-08 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.2.9:
+	- Fixed issue #22, now command-line options are correctly processed
+
+2009-11-18 Alexander Galanin <al@galanin.nnov.ru>
+
+	* Released 0.2.8:
+	- Fixed issue #20: incorrect directory size reported
+
+2008-12-06 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Released 0.2.7:
+	- Fixed segfault if user tried to re-open corrupted file from an
+	invalid archive.
+
+2008-09-29 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Released 0.2.6:
+	- Fixed: Compilation error on FreeBSD/Mac OS X with FUSE 2.7
+
+2008-08-24 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Released 0.2.5:
+	- Fixed: Archives containing files whose parent directory does not
+	present in archive, reported as broken.
+
+2008-08-09 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Released 0.2.4:
+	- fixed wrong directory size on 32-bit Linux machines
+
+2008-06-26 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Released 0.2.3:
+	- fixed problem with time and size of new files
+	- free space on file system now equal to free space in archive dir
+	- added missing includes
+	- removed GNU-specific commands in Makefile
+
+2008-06-16 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Released 0.2.2:
+	- re-licensed under LGPLv3+
+	- fixed problem with file modification time
+	- fixed problems with compilation on non-Linux systems
+
+2008-06-14 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Released 0.2.1:
+	- fixed bug with file size on 32-bit systems
+	- fixed compilation problems on non-GNU platforms
+	- fixed compilation problems on GCC 4.3+
+	- added stubs for *xattr() system calls
+	- more checks for error cases
+
+2008-06-11 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Released 0.2.0:
+	- implemented all functions to mount archive read-write
+	- big internal refactoring
+	- added performance tests
+	- fixed problem with simultaneous file access
+	- fixed problem with one-character file names
+	* Known limitations:
+	- archives with items like '../../somefile' recognited as broken
+
+2008-06-04 Alexander Galanin <gaa.nnov@mail.ru>
+
+	* Initial release 0.1.0:
+	- implemented all base functions for read-only archive support
+
